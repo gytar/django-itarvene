@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
+    <title>Le blog de l'année</title>
+</head>
+<body class="bg-gray-500">
+<div class="bg-gray-200 rounded">
+    <ul class="items-center flex bg-gray-200 w-1/2 rounded p-5 ">
+   <li class="mr-6">
+    <img class="w-10" src="https://add.ma/wp-content/uploads/2017/12/creation-blog.png" alt="">
+   </li>
+  <li class="mr-6">
+    <a class="text-gray-800 p-2 rounded hover:bg-green-500 hover:text-gray-800 hover:no-underline" href="{% url 'index' %}">Le Blog</a>
+  </li>
+  <li class="mr-6">
+    <a class="text-gray-800 p-2 rounded hover:bg-green-500 hover:text-gray-800 hover:no-underline" href="{% url 'upload-post' %}">Créer un post</a>
+  </li>
+  <li class="mr-6">
+    <a class="text-gray-800 p-2 rounded hover:bg-green-500 hover:text-gray-800 hover:no-underline" href="{% url 'admin:index' %}">Admin</a>
+  </li>
+</ul>
+</div>
+
+
+<h1>C Le blogue de Michel</h1>
+{% block content %}
+    <div class="canva">
+        {% for post in posts %}
+            <div class="post">
+                <h3>{{post.title}}</h3>
+                <p>Author: {{post.author.first_name}} {{post.author.last_name}}</p>
+                <p>{{post.description|truncatewords:50}}</p>
+            </div>
+        {% empty %}
+        No post yet.
+        {% endfor %}
+    </div>
+{% endblock content %}
+</body>
+</html>

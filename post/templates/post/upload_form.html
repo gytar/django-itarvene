@@ -1,0 +1,18 @@
+{% extends 'post/post.html' %}
+{% block content %}
+<center>
+<h1>Upload a post</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        <div class="flex flex-col justify-center">
+        
+        {% for field in upload_form %}
+        <tr>{{field.label}}</tr>
+        <tr>{{field}}</tr>
+        {% endfor %}
+
+        </div>
+    <button type="submit" class="bg-green-500 text-color-white">Post</button>
+</form>
+</center>
+{% endblock content %}
